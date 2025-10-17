@@ -1,0 +1,46 @@
+{
+  "features": [
+    {
+      "id": "difficulty-levels",
+      "icon": "📊",
+      "title": "Niveles de Dificultad de Problemas",
+      "description": "Visualiza el nivel de dificultad de cada problema de programación directamente en la lista de Acepta el Reto, facilitando la selección según tu nivel de experiencia.",
+      "order": 1
+    },
+    {
+      "id": "visual-marking",
+      "icon": "✅",
+      "title": "Marcado Visual de Problemas Resueltos",
+      "description": "Identifica rápidamente qué problemas has resuelto correctamente (AC - Accepted) y cuáles has intentado sin éxito (WA - Wrong Answer) con colores distintivos.",
+      "order": 2
+    },
+    {
+      "id": "categories",
+      "icon": "🏷️",
+      "title": "Categorías de Problemas de Programación",
+      "description": "Accede a las categorías y temas de algoritmos asociados a cada problema directamente desde su página de enunciado en Acepta el Reto.",
+      "order": 3
+    },
+    {
+      "id": "similar-problems",
+      "icon": "🔗",
+      "title": "Recomendaciones de Problemas Similares",
+      "description": "Descubre problemas relacionados con recomendaciones inteligentes basadas en categorías compartidas y dificultad similar.",
+      "order": 4
+    },
+    {
+      "id": "ranking-links",
+      "icon": "👥",
+      "title": "Enlaces Directos en Rankings",
+      "description": "Hiperenlaces directos a perfiles de usuarios en el ranking del concurso \"24 en 23\" para facilitar la navegación.",
+      "order": 5
+    },
+    {
+      "id": "code-download",
+      "icon": "💾",
+      "title": "Descarga de Código Fuente",
+      "description": "Descarga fácilmente el código fuente de todos tus envíos aceptados (AC) para revisar tus soluciones offline.",
+      "order": 6
+    }
+  ]
+}
