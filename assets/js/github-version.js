@@ -147,9 +147,12 @@ export const GitHubVersion = {
                     ` : ''}
                 `;
                 
+                // Actualizar también en el footer
+                this.updateFooterVersion(info.version);
+                
                 console.log('✅ Version info loaded:', info);
             } else {
-                // Fallback: mostrar versión por defecto si falla la carga
+                // Fallback: mostrar versión por defecto
                 container.innerHTML = `
                     <div class="version-badge">
                         <span class="version-label">Versión</span>
@@ -160,6 +163,8 @@ export const GitHubVersion = {
                         <span class="update-text">Versión estable</span>
                     </div>
                 `;
+                
+                this.updateFooterVersion('1.0.12');
                 
                 console.warn('⚠️ Using fallback version info');
             }
@@ -174,6 +179,21 @@ export const GitHubVersion = {
                     <span class="version-number">v1.0.12</span>
                 </div>
             `;
+            
+            this.updateFooterVersion('1.0.12');
+        }
+    },
+
+    /**
+     * Actualiza la versión en el footer
+     */
+    updateFooterVersion(version) {
+        const footerVersion = document.getElementById('footer-version');
+        if (footerVersion) {
+            const badge = footerVersion.querySelector('.footer-version-badge');
+            if (badge) {
+                badge.textContent = `v${version}`;
+            }
         }
     }
 };
