@@ -49,8 +49,11 @@ const App = {
             // Renderizar contenido dinámico
             this.renderContent(features, screenshots, steps);
             
-            // Inicializar componentes después de cargar el contenido
-            this.initComponents();
+            // IMPORTANTE: Inicializar componentes DESPUÉS de renderizar
+            // Esperar un momento para que el DOM se actualice
+            setTimeout(() => {
+                this.initComponents();
+            }, 100);
             
             console.log('✅ Data loaded and rendered successfully');
         } catch (error) {
@@ -90,19 +93,58 @@ const App = {
         try {
             console.log('⚙️ Initializing components...');
             
-            // Inicializar componentes en orden de prioridad
-            LightboxManager.init();
-            AnimationObserver.init();
+            // Inicializar componentes básicos primero
             SmoothScroll.init();
             HeaderScroll.init();
             ImagePreloader.init();
+            AnimationObserver.init();
+            
+            // CRÍTICO: Inicializar lightbox AL FINAL
+            // Para asegurar que todas las imágenes estén en el DOM
+            console.log('🖼️ Initializing Lightbox...');
+            LightboxManager.init();
+            
+            // Verificar que el lightbox se haya inicializado correctamente
+            const screenshotImages = document.querySelectorAll('.screenshot-img');
+            console.log(`✓ Found ${screenshotImages.length} screenshot images`);
+            
+            if (screenshotImages.length === 0) {
+                console.warn('⚠️ No screenshot images found! Lightbox may not work.');
+            }
 
-            // Marcar cuando la app está lista (para analytics/debugging)
+            // Marcar cuando la app está lista
             performanceMark('app-initialized');
             
             console.log('✅ AeRForU Website initialized successfully');
+            
+            // Debug: Verificar event listeners
+            this.debugLightbox();
+            
         } catch (error) {
             console.error('❌ Error initializing components:', error);
+        }
+    },
+
+    /**
+     * Función de debug para verificar el lightbox
+     */
+    debugLightbox() {
+        console.log('🔍 Lightbox Debug Info:');
+        console.log('- Lightbox element:', document.getElementById('lightbox'));
+        console.log('- Lightbox image:', document.getElementById('lightboxImg'));
+        console.log('- Close button:', document.getElementById('lightboxClose'));
+        console.log('- Screenshot images:', document.querySelectorAll('.screenshot-img').length);
+        
+        // Verificar que las imágenes tengan el event listener
+        const firstImg = document.querySelector('.screenshot-img');
+        if (firstImg) {
+            console.log('- First image has click listener:', firstImg.onclick !== null || firstImg.addEventListener !== undefined);
+            console.log('- First image attributes:', {
+                src: firstImg.src,
+                alt: firstImg.alt,
+                tabindex: firstImg.getAttribute('tabindex'),
+                role: firstImg.getAttribute('role')
+            });
         }
     },
 
@@ -125,3 +167,7 @@ App.init();
 
 // Opcional: descomentar para habilitar PWA
 // App.registerServiceWorker();
+
+// Exportar para debugging en consola
+window.App = App;
+window.LightboxManager = LightboxManager;
