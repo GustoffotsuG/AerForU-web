@@ -78,42 +78,13 @@
         <section id="features" class="section">
             <h2 class="section-title">Funcionalidades de AeRForU</h2>
             <p class="section-subtitle">Todas las herramientas que necesitas para mejorar tu experiencia</p>
-            <div class="features-grid">
-                <!-- Las funcionalidades se cargarán desde features.json -->
+            <!-- Contenedor dinámico - se llenará con JavaScript -->
+            <div id="features-grid" class="features-grid">
+                <!-- Fallback content mientras carga -->
                 <article class="feature-card fade-in">
-                    <div class="feature-icon">📊</div>
-                    <h3>Niveles de Dificultad</h3>
-                    <p>Visualiza el nivel de dificultad de cada problema directamente en la lista.</p>
-                </article>
-                
-                <article class="feature-card fade-in">
-                    <div class="feature-icon">✅</div>
-                    <h3>Marcado Visual de Problemas</h3>
-                    <p>Identifica rápidamente qué problemas has resuelto correctamente (AC) y cuáles no (WA).</p>
-                </article>
-                
-                <article class="feature-card fade-in">
-                    <div class="feature-icon">🏷️</div>
-                    <h3>Categorías de Problemas</h3>
-                    <p>Accede a las categorías y temas de algoritmos de cada problema.</p>
-                </article>
-                
-                <article class="feature-card fade-in">
-                    <div class="feature-icon">🔗</div>
-                    <h3>Problemas Similares</h3>
-                    <p>Descubre problemas relacionados con recomendaciones inteligentes.</p>
-                </article>
-                
-                <article class="feature-card fade-in">
-                    <div class="feature-icon">👥</div>
-                    <h3>Enlaces en Rankings</h3>
-                    <p>Hiperenlaces directos a perfiles de usuarios en el ranking.</p>
-                </article>
-                
-                <article class="feature-card fade-in">
-                    <div class="feature-icon">💾</div>
-                    <h3>Descarga de Código</h3>
-                    <p>Descarga fácilmente el código fuente de tus envíos aceptados.</p>
+                    <div class="feature-icon">⏳</div>
+                    <h3>Cargando funcionalidades...</h3>
+                    <p>Por favor espera mientras se cargan los datos.</p>
                 </article>
             </div>
         </section>
@@ -124,52 +95,18 @@
                 <h2 class="section-title">Capturas de Pantalla</h2>
                 <p class="section-subtitle">Descubre cómo AeRForU mejora visualmente tu experiencia</p>
                 
-                <div class="screenshots-gallery">
+                <!-- Contenedor dinámico - se llenará con JavaScript -->
+                <div id="screenshots-gallery" class="screenshots-gallery">
+                    <!-- Fallback content mientras carga -->
                     <article class="screenshot-card fade-in">
                         <div class="screenshot-wrapper">
-                            <img src="./assets/images/screenshots/screenshot-2.webp" 
-                                 alt="Panel lateral con categorías" 
-                                 class="screenshot-img"
-                                 loading="lazy"
-                                 width="1200"
-                                 height="675">
-                            <div class="screenshot-overlay"></div>
+                            <div style="width: 100%; height: 300px; background: var(--bg-card); display: flex; align-items: center; justify-content: center; border-radius: var(--border-radius-lg);">
+                                <p style="color: var(--text-light);">⏳ Cargando capturas...</p>
+                            </div>
                         </div>
                         <div class="screenshot-caption">
-                            <h3>🏷️ Categorías y Problemas Similares</h3>
-                            <p>Panel lateral con categorías de algoritmos</p>
-                        </div>
-                    </article>
-                    
-                    <article class="screenshot-card fade-in">
-                        <div class="screenshot-wrapper">
-                            <img src="./assets/images/screenshots/screenshot-4.webp" 
-                                 alt="Estadísticas detalladas" 
-                                 class="screenshot-img"
-                                 loading="lazy"
-                                 width="1200"
-                                 height="675">
-                            <div class="screenshot-overlay"></div>
-                        </div>
-                        <div class="screenshot-caption">
-                            <h3>📈 Estadísticas Detalladas</h3>
-                            <p>Visualiza tus métricas y progreso</p>
-                        </div>
-                    </article>
-                    
-                    <article class="screenshot-card fade-in">
-                        <div class="screenshot-wrapper">
-                            <img src="./assets/images/screenshots/screenshot-5.webp" 
-                                 alt="Marcado visual de problemas" 
-                                 class="screenshot-img"
-                                 loading="lazy"
-                                 width="1200"
-                                 height="675">
-                            <div class="screenshot-overlay"></div>
-                        </div>
-                        <div class="screenshot-caption">
-                            <h3>✅ Marcado Visual</h3>
-                            <p>Identifica tu progreso con colores</p>
+                            <h3>Cargando</h3>
+                            <p>Por favor espera mientras se cargan las imágenes.</p>
                         </div>
                     </article>
                 </div>
@@ -180,37 +117,15 @@
         <section id="installation" class="section">
             <h2 class="section-title">Cómo Instalar AeRForU</h2>
             <p class="section-subtitle">Guía paso a paso para instalar la extensión</p>
-            <div class="installation-steps">
+            <!-- Contenedor dinámico - se llenará con JavaScript -->
+            <div id="installation-steps" class="installation-steps">
+                <!-- Fallback content mientras carga -->
                 <article class="step fade-in">
                     <div class="step-header">
-                        <span class="step-number">1</span>
-                        <h3>Descargar la Extensión</h3>
+                        <span class="step-number">⏳</span>
+                        <h3>Cargando instrucciones...</h3>
                     </div>
-                    <p>Descarga el archivo ZIP desde GitHub y descomprímelo.</p>
-                </article>
-                
-                <article class="step fade-in">
-                    <div class="step-header">
-                        <span class="step-number">2</span>
-                        <h3>Abrir Extensiones en Chrome</h3>
-                    </div>
-                    <p>Introduce <code>chrome://extensions</code> y activa el Modo de desarrollador.</p>
-                </article>
-                
-                <article class="step fade-in">
-                    <div class="step-header">
-                        <span class="step-number">3</span>
-                        <h3>Cargar la Extensión</h3>
-                    </div>
-                    <p>Haz clic en "Cargar extensión sin empaquetar" y selecciona la carpeta.</p>
-                </article>
-                
-                <article class="step fade-in">
-                    <div class="step-header">
-                        <span class="step-number">4</span>
-                        <h3>¡Comienza a Usar AeRForU!</h3>
-                    </div>
-                    <p>Visita <a href="https://aceptaelreto.com" target="_blank">aceptaelreto.com</a> y disfruta.</p>
+                    <p>Por favor espera mientras se cargan los pasos de instalación.</p>
                 </article>
             </div>
         </section>
@@ -239,9 +154,9 @@
     <footer>
         <div class="footer-content">
             <div class="footer-links">
-                <a href="https://github.com/Jaimepas77/AeRForU" target="_blank">GitHub</a>
-                <a href="https://github.com/Jaimepas77/AeRForU/issues" target="_blank">Reportar Error</a>
-                <a href="https://aceptaelreto.com" target="_blank">Acepta el Reto</a>
+                <a href="https://github.com/Jaimepas77/AeRForU" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://github.com/Jaimepas77/AeRForU/issues" target="_blank" rel="noopener">Reportar Error</a>
+                <a href="https://aceptaelreto.com" target="_blank" rel="noopener">Acepta el Reto</a>
                 <a href="#features">Funcionalidades</a>
                 <a href="#installation">Instalación</a>
             </div>
