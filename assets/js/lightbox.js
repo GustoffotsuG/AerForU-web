@@ -12,9 +12,18 @@ export const LightboxManager = {
     isZoomed: false,
 
     /**
-     * Inicializa el lightbox
+     * Inicializa el lightbox COMPLETO (con listeners de imágenes)
      */
     init() {
+        this.initWithoutImageListeners();
+        this.attachImageListeners();
+    },
+
+    /**
+     * Inicializa el lightbox SIN adjuntar listeners a las imágenes
+     * (Útil cuando queremos controlar los listeners externamente)
+     */
+    initWithoutImageListeners() {
         this.lightbox = document.getElementById('lightbox');
         this.lightboxImg = document.getElementById('lightboxImg');
         this.lightboxClose = document.getElementById('lightboxClose');
@@ -31,7 +40,10 @@ export const LightboxManager = {
         // Crear controles de navegación
         this.createNavigationControls();
         
-        this.attachListeners();
+        // Adjuntar listeners (excepto los de las imágenes)
+        this.attachBasicListeners();
+        
+        console.log('✅ Lightbox initialized (without image listeners)');
     },
 
     /**
@@ -43,12 +55,19 @@ export const LightboxManager = {
             src: img.src,
             alt: img.alt
         }));
+        console.log(`   Collected ${this.images.length} images`);
     },
 
     /**
      * Crea los controles de navegación (flechas)
      */
     createNavigationControls() {
+        // Verificar si ya existen
+        if (document.getElementById('lightboxPrev')) {
+            console.log('   Navigation controls already exist');
+            return;
+        }
+
         // Botón anterior
         const prevBtn = document.createElement('button');
         prevBtn.className = 'lightbox-nav prev';
@@ -77,6 +96,8 @@ export const LightboxManager = {
             e.stopPropagation();
             this.nextImage();
         });
+        
+        console.log('   Navigation controls created');
     },
 
     /**
@@ -85,6 +106,8 @@ export const LightboxManager = {
      * @param {String} alt - Texto alternativo
      */
     open(src, alt) {
+        console.log(`📸 Opening lightbox: ${alt}`);
+        
         // Encontrar el índice de la imagen actual
         this.currentIndex = this.images.findIndex(img => img.src === src);
         if (this.currentIndex === -1) this.currentIndex = 0;
@@ -110,6 +133,8 @@ export const LightboxManager = {
             
             // Focus en el botón de cerrar para accesibilidad
             setTimeout(() => this.lightboxClose.focus(), 100);
+            
+            console.log('✅ Lightbox opened');
         };
         
         img.onerror = () => {
@@ -132,6 +157,8 @@ export const LightboxManager = {
         if (this.lightboxCaption) {
             this.lightboxCaption.textContent = '';
         }
+        
+        console.log('❌ Lightbox closed');
     },
 
     /**
@@ -209,38 +236,13 @@ export const LightboxManager = {
         } else {
             prevBtn.style.display = 'flex';
             nextBtn.style.display = 'flex';
-            
-            // Opcional: deshabilitar botones en los extremos
-            // prevBtn.disabled = this.currentIndex === 0;
-            // nextBtn.disabled = this.currentIndex === this.images.length - 1;
         }
     },
 
     /**
-     * Adjunta event listeners
+     * Adjunta event listeners básicos (sin imágenes)
      */
-    attachListeners() {
-        // Click en imágenes para abrir lightbox
-        document.querySelectorAll('.screenshot-img').forEach((img, index) => {
-            // Click
-            img.addEventListener('click', (e) => {
-                this.open(e.target.src, e.target.alt);
-            });
-            
-            // Accesibilidad: Enter/Space para abrir
-            img.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    this.open(e.target.src, e.target.alt);
-                }
-            });
-            
-            // Hacer las imágenes focuseables
-            img.setAttribute('tabindex', '0');
-            img.setAttribute('role', 'button');
-            img.setAttribute('aria-label', 'Click para ampliar imagen');
-        });
-
+    attachBasicListeners() {
         // Cerrar lightbox con el botón X
         this.lightboxClose.addEventListener('click', () => this.close());
         
@@ -305,13 +307,41 @@ export const LightboxManager = {
             
             if (Math.abs(diff) > swipeThreshold) {
                 if (diff > 0) {
-                    // Swipe izquierda - siguiente imagen
                     this.nextImage();
                 } else {
-                    // Swipe derecha - imagen anterior
                     this.previousImage();
                 }
             }
         };
+        
+        console.log('   Basic listeners attached');
+    },
+
+    /**
+     * Adjunta listeners a las imágenes de la galería
+     * (Este método se llama desde app.js o puede usarse aquí)
+     */
+    attachImageListeners() {
+        document.querySelectorAll('.screenshot-img').forEach((img, index) => {
+            // Click
+            img.addEventListener('click', (e) => {
+                this.open(e.target.src, e.target.alt);
+            });
+            
+            // Accesibilidad: Enter/Space para abrir
+            img.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.open(e.target.src, e.target.alt);
+                }
+            });
+            
+            // Hacer las imágenes focuseables
+            img.setAttribute('tabindex', '0');
+            img.setAttribute('role', 'button');
+            img.setAttribute('aria-label', 'Click para ampliar imagen');
+        });
+        
+        console.log('   Image listeners attached');
     }
 };
