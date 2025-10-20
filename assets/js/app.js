@@ -11,6 +11,7 @@ import { HeaderScroll } from './header-scroll.js';
 import { ImagePreloader } from './image-preloader.js';
 import { DataLoader } from './data-loader.js';
 import { DOMBuilder } from './dom-builder.js';
+import { GitHubVersion } from './github-version.js';
 import { performanceMark, domReady } from './utils.js';
 
 /**

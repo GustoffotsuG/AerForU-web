@@ -220,29 +220,61 @@
     pointer-events: none;
 }
 
+/* ========== BOTÓN DE CERRAR MEJORADO ========== */
 .lightbox-close {
     position: absolute;
     top: 2rem;
     right: 2rem;
-    color: white;
-    font-size: 2.5rem;
+    color: rgba(255, 255, 255, 0.9);
     cursor: pointer;
-    transition: var(--transition);
     z-index: 10000;
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: none;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.25s ease;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.lightbox-close::before {
+    content: '✕';
+    display: block;
+    transition: transform 0.25s ease;
 }
 
 .lightbox-close:hover {
-    transform: scale(1.15) rotate(90deg);
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.95);
+    color: #1e293b;
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    transform: translateY(-2px);
+}
+
+.lightbox-close:hover::before {
+    transform: scale(1.15);
+}
+
+.lightbox-close:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.lightbox-close:active::before {
+    transform: scale(0.95);
+}
+
+/* Focus para accesibilidad */
+.lightbox-close:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
 }
 
 /* Navegación con flechas */
@@ -252,12 +284,12 @@
     transform: translateY(-50%);
     background: rgba(255, 255, 255, 0.1);
     color: white;
-    border: none;
+    border: 2px solid rgba(255, 255, 255, 0.2);
     width: 50px;
     height: 50px;
-    border-radius: 50%;
+    border-radius: 12px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     backdrop-filter: blur(10px);
     font-size: 1.5rem;
     display: flex;
@@ -268,7 +300,9 @@
 
 .lightbox-nav:hover {
     background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
     transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 .lightbox-nav:active {
@@ -341,7 +375,7 @@
     }
     
     .lightbox-close {
-        font-size: 2rem;
+        font-size: 1.75rem;
         top: 1rem;
         right: 1rem;
         width: 44px;

@@ -3,7 +3,7 @@
     {
       "number": 1,
       "title": "Descargar la Extensión AeRForU",
-      "description": "Descarga el archivo ZIP del proyecto desde GitHub de forma gratuita y descomprímelo en una carpeta de tu ordenador.",
+      "description": "Descarga el archivo ZIP del proyecto desde <a href=\"https://github.com/Jaimepas77/AeRForU\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--secondary); font-weight: 600; text-decoration: underline;\">GitHub</a> de forma gratuita y descomprímelo en una carpeta de tu ordenador.",
       "code": null
     },
     {

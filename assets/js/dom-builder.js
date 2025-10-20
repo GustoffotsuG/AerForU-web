@@ -58,26 +58,39 @@ export const DOMBuilder = {
         const article = document.createElement('article');
         article.className = 'step fade-in';
         
-        let content = `
-            <div class="step-header">
-                <span class="step-number">${step.number}</span>
-                <h3>${step.title}</h3>
-            </div>
-            <p>${step.description}`;
+        // Crear header
+        const header = document.createElement('div');
+        header.className = 'step-header';
+        header.innerHTML = `
+            <span class="step-number">${step.number}</span>
+            <h3>${step.title}</h3>
+        `;
         
-        // Añadir código si existe
-        if (step.code) {
-            content += ` <code>${step.code}</code>`;
+        // Crear párrafo de descripción
+        const description = document.createElement('p');
+        
+        // Si no hay código, usar innerHTML directamente
+        if (!step.code) {
+            description.innerHTML = step.description;
+        } else {
+            // Si hay código, añadirlo después
+            description.innerHTML = step.description;
+            const code = document.createElement('code');
+            code.textContent = step.code;
+            description.appendChild(document.createTextNode(' '));
+            description.appendChild(code);
         }
         
-        content += `</p>`;
+        // Añadir elementos al article
+        article.appendChild(header);
+        article.appendChild(description);
         
         // Añadir enlace si existe
         if (step.link) {
-            content += `<p><a href="${step.link.url}" target="_blank" rel="noopener" style="${step.link.style || ''}">${step.link.text}</a></p>`;
+            const linkPara = document.createElement('p');
+            linkPara.innerHTML = `<a href="${step.link.url}" target="_blank" rel="noopener" style="${step.link.style || ''}">${step.link.text}</a>`;
+            article.appendChild(linkPara);
         }
-        
-        article.innerHTML = content;
         
         return article;
     },
@@ -94,13 +107,9 @@ export const DOMBuilder = {
             return;
         }
 
-        // Limpiar contenedor
         container.innerHTML = '';
-
-        // Ordenar por campo 'order'
         const sortedFeatures = features.sort((a, b) => a.order - b.order);
 
-        // Crear y añadir cards
         sortedFeatures.forEach(feature => {
             const card = this.createFeatureCard(feature);
             container.appendChild(card);
@@ -119,13 +128,9 @@ export const DOMBuilder = {
             return;
         }
 
-        // Limpiar contenedor
         container.innerHTML = '';
-
-        // Ordenar por campo 'order'
         const sortedScreenshots = screenshots.sort((a, b) => a.order - b.order);
 
-        // Crear y añadir cards
         sortedScreenshots.forEach(screenshot => {
             const card = this.createScreenshotCard(screenshot);
             container.appendChild(card);
@@ -144,13 +149,9 @@ export const DOMBuilder = {
             return;
         }
 
-        // Limpiar contenedor
         container.innerHTML = '';
-
-        // Ordenar por campo 'number'
         const sortedSteps = steps.sort((a, b) => a.number - b.number);
 
-        // Crear y añadir pasos
         sortedSteps.forEach(step => {
             const stepElement = this.createInstallationStep(step);
             container.appendChild(stepElement);
