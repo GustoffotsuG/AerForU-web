@@ -5,26 +5,26 @@
     "keywords": "AeRForU, Acepta el Reto, extensión Chrome, extensión Firefox, programación competitiva, problemas algoritmos, dificultad problemas, categorías programación, estadísticas coding, extension aceptaelreto, acepta el reto herramientas, programming challenges, competitive programming español, problemas programación, juez online, online judge español",
     "author": "Jaime Pastrana García",
     "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-    "canonical": "https://tudominio.com/",
+    "canonical": "https://aerforu.netlify.app/",
     "language": "es-ES"
   },
   "openGraph": {
     "type": "website",
-    "url": "https://tudominio.com/",
+    "url": "https://aerforu.netlify.app/",
     "siteName": "AeRForU - Extensión para Acepta el Reto",
     "title": "AeRForU - La Mejor Extensión para Acepta el Reto | Gratis",
     "description": "Extensión gratuita que añade niveles de dificultad, categorías, estadísticas avanzadas y marcado de problemas a Acepta el Reto. Mejora tu experiencia de programación competitiva.",
-    "image": "https://tudominio.com/assets/images/og-image.png",
+    "image": "https://aerforu.netlify.app/assets/images/og-image.png",
     "imageWidth": "1200",
     "imageHeight": "630",
     "locale": "es_ES"
   },
   "twitter": {
     "card": "summary_large_image",
-    "url": "https://tudominio.com/",
+    "url": "https://aerforu.netlify.app/",
     "title": "AeRForU - La Mejor Extensión para Acepta el Reto",
     "description": "Añade niveles de dificultad, categorías y estadísticas a Acepta el Reto. Extensión gratuita para Chrome y Firefox.",
-    "image": "https://tudominio.com/assets/images/twitter-card.png",
+    "image": "https://aerforu.netlify.app/assets/images/twitter-card.png",
     "creator": "@tuperfil"
   },
   "structuredData": {
@@ -50,9 +50,9 @@
       },
       "description": "Extensión de navegador que añade niveles de dificultad, categorías, estadísticas y marcado de problemas resueltos a Acepta el Reto",
       "featureList": "Niveles de dificultad, Marcado de problemas AC/WA, Categorías de problemas, Problemas similares, Estadísticas avanzadas, Descarga de código",
-      "screenshot": "https://tudominio.com/assets/images/screenshots/screenshot-1.webp",
+      "screenshot": "https://aerforu.netlify.app/assets/images/screenshots/screenshot-1.webp",
       "softwareVersion": "1.0",
-      "url": "https://tudominio.com",
+      "url": "https://aerforu.netlify.app/",
       "downloadUrl": "https://github.com/Jaimepas77/AeRForU/archive/refs/heads/main.zip",
       "releaseNotes": "Versión inicial con todas las funcionalidades principales"
     },
