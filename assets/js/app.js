@@ -46,12 +46,27 @@ const App = {
             // Renderizar contenido dinámico
             this.renderContent(features, screenshots, steps);
             
+            // Cargar información de versión desde GitHub
+            this.loadVersionInfo();
+            
             // Inicializar componentes después del renderizado
             setTimeout(() => this.initComponents(), 100);
             
         } catch (error) {
             console.error('Error loading data:', error);
             this.initComponents();
+        }
+    },
+
+    /**
+     * Carga y muestra la información de versión desde GitHub
+     */
+    async loadVersionInfo() {
+        try {
+            console.log('🔍 Loading version info from GitHub...');
+            await GitHubVersion.renderVersionInfo('version-info');
+        } catch (error) {
+            console.error('Error loading version info:', error);
         }
     },
 
@@ -165,6 +180,6 @@ setTimeout(() => {
 }, 200);
 
 // Exportar App para debugging (opcional en producción)
-if (process.env.NODE_ENV !== 'production') {
+if (typeof process === 'undefined' || process.env?.NODE_ENV !== 'production') {
     window.App = App;
 }

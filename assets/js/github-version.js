@@ -12,14 +12,20 @@ export const GitHubVersion = {
      */
     async getVersion() {
         try {
-            const response = await fetch(this.MANIFEST_URL);
+            const response = await fetch(this.MANIFEST_URL, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json'
+                },
+                cache: 'no-cache'
+            });
             
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             
             const manifest = await response.json();
-            return manifest.version || 'Unknown';
+            return manifest.version || null;
             
         } catch (error) {
             console.warn('Error fetching version from GitHub:', error);
@@ -32,7 +38,13 @@ export const GitHubVersion = {
      */
     async getLastUpdateDate() {
         try {
-            const response = await fetch(this.COMMITS_API);
+            const response = await fetch(this.COMMITS_API, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/vnd.github.v3+json'
+                },
+                cache: 'no-cache'
+            });
             
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -57,7 +69,7 @@ export const GitHubVersion = {
      * Formatea una fecha de forma amigable
      */
     formatDate(date) {
-        if (!date) return 'Fecha desconocida';
+        if (!date) return null;
         
         const now = new Date();
         const diffTime = Math.abs(now - date);
@@ -125,28 +137,41 @@ export const GitHubVersion = {
                 container.innerHTML = `
                     <div class="version-badge">
                         <span class="version-label">Versión</span>
-                        <span class="version-number">${info.version}</span>
+                        <span class="version-number">v${info.version}</span>
                     </div>
-                    ${info.lastUpdate ? `
+                    ${info.lastUpdateFormatted ? `
                         <div class="version-update">
                             <span class="update-icon">🕒</span>
                             <span class="update-text">Actualizado ${info.lastUpdateFormatted}</span>
                         </div>
                     ` : ''}
                 `;
+                
+                console.log('✅ Version info loaded:', info);
             } else {
+                // Fallback: mostrar versión por defecto si falla la carga
                 container.innerHTML = `
-                    <div class="version-error">
-                        <span>⚠️ No se pudo obtener la versión</span>
+                    <div class="version-badge">
+                        <span class="version-label">Versión</span>
+                        <span class="version-number">v1.0.12</span>
+                    </div>
+                    <div class="version-update">
+                        <span class="update-icon">ℹ️</span>
+                        <span class="update-text">Versión estable</span>
                     </div>
                 `;
+                
+                console.warn('⚠️ Using fallback version info');
             }
             
         } catch (error) {
             console.error('Error rendering version info:', error);
+            
+            // Fallback UI en caso de error
             container.innerHTML = `
-                <div class="version-error">
-                    <span>⚠️ Error al cargar versión</span>
+                <div class="version-badge">
+                    <span class="version-label">Versión</span>
+                    <span class="version-number">v1.0.12</span>
                 </div>
             `;
         }

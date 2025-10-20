@@ -220,46 +220,48 @@
     pointer-events: none;
 }
 
-/* ========== BOTÓN DE CERRAR MEJORADO ========== */
+/* ========== BOTÓN DE CERRAR ÚNICO ========== */
 .lightbox-close {
     position: absolute;
     top: 2rem;
     right: 2rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: white;
     cursor: pointer;
-    z-index: 10000;
-    width: 44px;
-    height: 44px;
+    z-index: 10001;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 8px;
-    background: rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    transition: all 0.25s ease;
-    font-size: 1.5rem;
-    font-weight: 400;
-    line-height: 1;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    font-size: 0;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
+/* Usar ::before para la X */
 .lightbox-close::before {
     content: '✕';
     display: block;
-    transition: transform 0.25s ease;
+    font-size: 1.75rem;
+    font-weight: 300;
+    line-height: 1;
+    transition: transform 0.3s ease;
 }
 
 .lightbox-close:hover {
     background: rgba(255, 255, 255, 0.95);
-    color: #1e293b;
-    border-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.4);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
     transform: translateY(-2px);
 }
 
 .lightbox-close:hover::before {
-    transform: scale(1.15);
+    color: #1e293b;
+    transform: scale(1.2) rotate(90deg);
 }
 
 .lightbox-close:active {
@@ -375,11 +377,14 @@
     }
     
     .lightbox-close {
-        font-size: 1.75rem;
         top: 1rem;
         right: 1rem;
         width: 44px;
         height: 44px;
+    }
+    
+    .lightbox-close::before {
+        font-size: 1.5rem;
     }
     
     .lightbox-nav {
