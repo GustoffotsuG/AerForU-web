@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aerforu.netlify.app/sitemap.xml
+
+# Bloquear archivos innecesarios
+Disallow: /assets/js/
+Disallow: /assets/css/
+Disallow: /config/
+Disallow: /*.json$
