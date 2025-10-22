@@ -12,6 +12,7 @@ import { ImagePreloader } from './image-preloader.js';
 import { DataLoader } from './data-loader.js';
 import { DOMBuilder } from './dom-builder.js';
 import { GitHubVersion } from './github-version.js';
+import { DownloadManager } from './download-manager.js';
 import { performanceMark, domReady } from './utils.js';
 
 /**
@@ -97,6 +98,7 @@ const App = {
             HeaderScroll.init();
             ImagePreloader.init();
             AnimationObserver.init();
+            DownloadManager.init();
             
             // Inicializar lightbox sin listeners automáticos
             LightboxManager.initWithoutImageListeners();
@@ -174,9 +176,10 @@ const App = {
 // Iniciar aplicación
 App.init();
 
-// Exportar LightboxManager globalmente después de un breve delay
+// Exportar módulos globalmente
 setTimeout(() => {
     window.LightboxManager = LightboxManager;
+    window.DownloadManager = DownloadManager;
 }, 200);
 
 // Exportar App para debugging (opcional en producción)
