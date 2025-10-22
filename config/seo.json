@@ -1,8 +1,8 @@
 {
   "meta": {
-    "title": "AeRForU - La Mejor Extensión para Acepta el Reto | Gratis 2024",
-    "description": "AeRForU es la mejor extensión para Acepta el Reto. Añade niveles de dificultad, categorías, estadísticas avanzadas y marcado visual de problemas resueltos. Mejora tu experiencia en aceptaelreto.com gratis.",
-    "keywords": "AeRForU, Acepta el Reto, extensión Chrome, extensión Firefox, programación competitiva, problemas algoritmos, dificultad problemas, categorías programación, estadísticas coding, extension aceptaelreto, acepta el reto herramientas, programming challenges, competitive programming español, problemas programación, juez online, online judge español",
+    "title": "AeRForU - Extensión para Acepta el Reto | Opensource",
+    "description": "AeRForU es la mejor extensión para Acepta el Reto. Añade niveles de dificultad, recomendacion de categorías, estadísticas avanzadas y marcado visual de problemas resueltos. Mejora tu experiencia en aceptaelreto.com.",
+    "keywords": "AeRForU, Acepta el Reto, extensión Chrome, programación competitiva, problemas algoritmos, dificultad problemas, categorías programación, estadísticas coding, extension aceptaelreto, acepta el reto herramientas, programming challenges, competitive programming español, problemas programación, juez online, online judge español, acepta el reto plugin, acepta el reto extension, plugin acepta el reto, extension acepta el reto",
     "author": "Juan Pastrana García",
     "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
     "canonical": "https://aerforu.netlify.app/",
@@ -11,9 +11,9 @@
   "openGraph": {
     "type": "website",
     "url": "https://aerforu.netlify.app/",
-    "siteName": "AeRForU - Extensión para Acepta el Reto",
-    "title": "AeRForU - La Mejor Extensión para Acepta el Reto | Gratis",
-    "description": "Extensión gratuita que añade niveles de dificultad, categorías, estadísticas avanzadas y marcado de problemas a Acepta el Reto. Mejora tu experiencia de programación competitiva.",
+    "siteName": "AeRForU - Extensión para Acepta el Reto | Opensource",
+    "title": "AeRForU - Extensión para Acepta el Reto | Opensource",
+    "description": "AeRForU es la mejor extensión para Acepta el Reto. Añade niveles de dificultad, recomendacion de categorías, estadísticas avanzadas y marcado visual de problemas resueltos. Mejora tu experiencia en aceptaelreto.com.",
     "image": "https://aerforu.netlify.app/assets/images/og-image.png",
     "imageWidth": "1200",
     "imageHeight": "630",
@@ -22,8 +22,8 @@
   "twitter": {
     "card": "summary_large_image",
     "url": "https://aerforu.netlify.app/",
-    "title": "AeRForU - La Mejor Extensión para Acepta el Reto",
-    "description": "Añade niveles de dificultad, categorías y estadísticas a Acepta el Reto. Extensión gratuita para Chrome y Firefox.",
+    "title": "AeRForU - Extensión para Acepta el Reto | Opensource",
+    "description": "AeRForU es la mejor extensión para Acepta el Reto. Añade niveles de dificultad, recomendacion de categorías, estadísticas avanzadas y marcado visual de problemas resueltos. Mejora tu experiencia en aceptaelreto.com.",
     "image": "https://aerforu.netlify.app/assets/images/twitter-card.png",
     "creator": "@tuperfil"
   },

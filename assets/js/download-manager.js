@@ -1,6 +1,8 @@
 /**
- * Gestor de descargas con sistema de notificaciones toast
+ * Gestor de descargas con sistema de notificaciones toast y Analytics
  */
+
+import { Analytics } from './analytics.js';
 
 export const DownloadManager = {
     downloadBtn: null,
@@ -61,6 +63,13 @@ export const DownloadManager = {
             return;
         }
 
+        // Obtener información de la descarga
+        const downloadUrl = btn.href || btn.getAttribute('href');
+        const fileName = btn.getAttribute('download') || 'AeRForU.zip';
+
+        // 📊 TRACKEAR CLICK EN BOTÓN DE DESCARGA
+        Analytics.trackButtonClick('Download Button', 'Hero Section');
+
         // Mostrar estado de descarga
         this.showDownloadingState(btn);
         
@@ -76,6 +85,9 @@ export const DownloadManager = {
         // Simular tiempo de descarga (para dar feedback visual)
         setTimeout(() => {
             this.showSuccessState(btn);
+            
+            // 📊 TRACKEAR DESCARGA COMPLETADA
+            Analytics.trackDownload(fileName, downloadUrl);
             
             // Toast de éxito
             this.showToast({
@@ -229,6 +241,9 @@ export const DownloadManager = {
      * Muestra un toast de error personalizado
      */
     showError(message) {
+        // 📊 TRACKEAR ERROR
+        Analytics.trackError(message, 'Download Manager');
+        
         this.showToast({
             type: 'error',
             title: '❌ Error',

@@ -2,72 +2,136 @@
    Download Button - Animaciones Premium y Estados
    ============================================ */
 
-/* Botón primario mejorado con pulso */
+/* Botón primario BLANCO con efecto de cristal brillante */
 .btn-primary {
     position: relative;
     background: white;
-    color: var(--primary);
-    box-shadow: var(--shadow-md);
+    color: #667eea;
+    box-shadow: 
+        0 8px 30px rgba(0, 0, 0, 0.3),
+        0 2px 8px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 1),
+        inset 0 -1px 0 rgba(102, 126, 234, 0.1);
     animation: gentlePulse 3s ease-in-out infinite;
+    overflow: hidden;
+    border: 2px solid rgba(102, 126, 234, 0.15);
+    font-weight: 600;
 }
 
-/* Animación de pulso suave continua */
+/* Gradiente sutil de fondo para dar profundidad */
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(102, 126, 234, 0.03) 0%,
+        rgba(255, 255, 255, 1) 50%,
+        rgba(118, 75, 162, 0.03) 100%
+    );
+    z-index: 0;
+}
+
+/* Animación de pulso suave continua - con borde brillante */
 @keyframes gentlePulse {
     0%, 100% {
         transform: scale(1);
         box-shadow: 
-            0 4px 12px rgba(102, 126, 234, 0.15),
-            0 0 0 0 rgba(102, 126, 234, 0.4);
+            0 8px 30px rgba(0, 0, 0, 0.3),
+            0 2px 8px rgba(0, 0, 0, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 1),
+            inset 0 -1px 0 rgba(102, 126, 234, 0.1),
+            0 0 0 0 rgba(102, 126, 234, 0.6);
     }
     50% {
-        transform: scale(1.02);
+        transform: scale(1.05);
         box-shadow: 
-            0 6px 20px rgba(102, 126, 234, 0.25),
-            0 0 0 8px rgba(102, 126, 234, 0);
+            0 12px 40px rgba(0, 0, 0, 0.4),
+            0 4px 12px rgba(0, 0, 0, 0.25),
+            inset 0 1px 0 rgba(255, 255, 255, 1),
+            inset 0 -1px 0 rgba(102, 126, 234, 0.2),
+            0 0 0 12px rgba(102, 126, 234, 0);
     }
 }
 
-/* Efecto de brillo que se mueve */
+/* Efecto de brillo CRISTALINO visible sobre fondo blanco */
 .btn-primary::after {
     content: '';
     position: absolute;
     top: -50%;
-    left: -100%;
-    width: 50%;
+    left: -150%;
+    width: 60%;
     height: 200%;
     background: linear-gradient(
         90deg,
-        transparent,
-        rgba(255, 255, 255, 0.4),
-        transparent
+        transparent 0%,
+        rgba(102, 126, 234, 0.15) 10%,
+        rgba(102, 126, 234, 0.35) 30%,
+        rgba(118, 75, 162, 0.5) 50%,
+        rgba(240, 147, 251, 0.35) 70%,
+        rgba(240, 147, 251, 0.15) 90%,
+        transparent 100%
     );
-    transform: skewX(-25deg);
-    animation: shine 3s ease-in-out infinite;
+    transform: skewX(-20deg);
+    animation: shineStrong 3s ease-in-out infinite;
+    z-index: 1;
+    filter: blur(2px);
+    mix-blend-mode: multiply;
+    opacity: 0.8;
 }
 
-@keyframes shine {
+/* Animación de brillo más fuerte y visible */
+@keyframes shineStrong {
     0% {
-        left: -100%;
+        left: -150%;
     }
-    20%, 100% {
-        left: 200%;
+    50% {
+        left: 150%;
+    }
+    100% {
+        left: 150%;
+    }
+}
+
+/* Animación del borde brillante */
+@keyframes borderShine {
+    0%, 100% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translateX(0);
     }
 }
 
 .btn-primary:hover {
-    transform: translateY(-3px) scale(1.05);
+    transform: translateY(-3px) scale(1.08);
     box-shadow: 
-        0 12px 32px rgba(102, 126, 234, 0.35),
-        0 0 0 0 rgba(102, 126, 234, 0);
+        0 16px 50px rgba(0, 0, 0, 0.4),
+        0 6px 20px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 1),
+        inset 0 -1px 0 rgba(102, 126, 234, 0.2);
     animation: none;
+    border-color: rgba(102, 126, 234, 0.3);
 }
 
 .btn-primary:hover::after {
-    animation: shine 0.6s ease-in-out;
+    animation: shineStrong 0.6s ease-in-out;
+    opacity: 1;
+    filter: blur(1px);
 }
 
 .btn-primary:active {
     transform: translateY(-1px) scale(1.02);
+}
+
+.btn > * {
+    position: relative;
+    z-index: 2;
 }
 
 /* Estado de descarga */
@@ -103,6 +167,7 @@
         transparent
     );
     animation: downloadProgress 1.5s ease-in-out infinite;
+    z-index: 1;
 }
 
 @keyframes downloadProgress {
