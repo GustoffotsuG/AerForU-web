@@ -445,7 +445,7 @@ Eres libre de:
 
 ---
 
-## 👤 Autor
+## 👤 Autor de la extension
 
 **Jaime Pastrana García**
 
@@ -457,8 +457,9 @@ Eres libre de:
 
 ## 📞 Soporte
 
-- **Issues**: [GitHub Issues](https://github.com/Jaimepas77/AeRForU/issues)
+- **Issues de la web**: [GitHub Issues](https://github.com/GustoffotsuG/AerForU-web-in_development/issues)
 - **Extensión**: [Repositorio Principal](https://github.com/Jaimepas77/AeRForU)
+- **Issues de la extension**: [GitHub Issues](https://github.com/Jaimepas77/AeRForU/issues)
 - **Acepta el Reto**: [aceptaelreto.com](https://aceptaelreto.com)
 
 ---
@@ -466,7 +467,7 @@ Eres libre de:
 ## 🌟 Agradecimientos
 
 - **Acepta el Reto**: Por proporcionar una plataforma excepcional
-- **Comunidad Open Source**: Por las herramientas y librerías utilizadas
+- **Jaimepas77**: Por la creacion de una extensión para Acepta el Reto
 - **Usuarios**: Por el feedback y sugerencias
 
 ---
