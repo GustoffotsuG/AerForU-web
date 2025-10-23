@@ -1,42 +1,87 @@
 /**
- * AeRForU Website - Aplicación Principal
- * Inicializa todos los módulos y gestiona la carga de datos
+ * AeRForU Website - Aplicación Principal OPTIMIZADA
+ * - Carga diferida de módulos pesados
+ * - Inicialización progresiva
+ * - Reducción de Total Blocking Time
  */
 
+// Importaciones críticas primero (necesarias para First Paint)
 import { ThemeManager } from './theme-manager.js';
-import { LightboxManager } from './lightbox.js';
-import { AnimationObserver } from './animations.js';
-import { SmoothScroll } from './smooth-scroll.js';
-import { HeaderScroll } from './header-scroll.js';
-import { ImagePreloader } from './image-preloader.js';
-import { DataLoader } from './data-loader.js';
-import { DOMBuilder } from './dom-builder.js';
-import { GitHubVersion } from './github-version.js';
-import { DownloadManager } from './download-manager.js';
-import { performanceMark, domReady } from './utils.js';
+import { domReady } from './utils.js';
 
 /**
- * Aplicación principal
+ * Aplicación principal con inicialización progresiva
  */
 const App = {
+    // Flags de estado
+    isInitialized: false,
+    modulesLoaded: {
+        critical: false,
+        secondary: false,
+        lazy: false
+    },
+
     /**
-     * Inicializa la aplicación
+     * Inicialización INMEDIATA - Solo crítico
      */
     init() {
-        // Inicializar tema antes de que cargue el DOM
+        // 1. Tema INMEDIATO (debe aplicarse antes de First Paint)
         ThemeManager.init();
         
-        // Esperar a que el DOM esté listo
+        // 2. DOM Ready - Carga progresiva
         domReady(() => {
-            this.loadData();
+            this.loadCriticalModules();
         });
     },
 
     /**
-     * Carga todos los datos desde archivos JSON
+     * PASO 1: Módulos críticos (necesarios para interacción básica)
+     * Carga en ~100ms
      */
-    async loadData() {
+    async loadCriticalModules() {
         try {
+            // Importaciones críticas en paralelo
+            const [
+                { SmoothScroll },
+                { HeaderScroll },
+                { DownloadManager }
+            ] = await Promise.all([
+                import('./smooth-scroll.js'),
+                import('./header-scroll.js'),
+                import('./download-manager.js')
+            ]);
+
+            // Inicializar críticos
+            SmoothScroll.init();
+            HeaderScroll.init();
+            DownloadManager.init();
+            
+            this.modulesLoaded.critical = true;
+            console.log('✅ Critical modules loaded');
+
+            // Cargar contenido dinámico en paralelo
+            this.loadContent();
+            
+            // Diferir módulos secundarios (no bloquean interacción)
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(() => this.loadSecondaryModules(), { timeout: 2000 });
+            } else {
+                setTimeout(() => this.loadSecondaryModules(), 1000);
+            }
+            
+        } catch (error) {
+            console.error('Error loading critical modules:', error);
+        }
+    },
+
+    /**
+     * PASO 2: Carga de contenido (JSON) - No bloquea interacción
+     */
+    async loadContent() {
+        try {
+            const { DataLoader } = await import('./data-loader.js');
+            const { DOMBuilder } = await import('./dom-builder.js');
+
             // Cargar datos en paralelo
             const [features, screenshots, steps] = await Promise.all([
                 DataLoader.loadFeatures(),
@@ -44,27 +89,88 @@ const App = {
                 DataLoader.loadInstallationSteps()
             ]);
 
-            // Renderizar contenido dinámico
-            this.renderContent(features, screenshots, steps);
+            // Renderizar progresivamente (uno por uno, sin bloquear)
+            requestAnimationFrame(() => {
+                if (features.length > 0) {
+                    DOMBuilder.renderFeatures(features, 'features-grid');
+                }
+            });
+
+            requestAnimationFrame(() => {
+                if (screenshots.length > 0) {
+                    DOMBuilder.renderScreenshots(screenshots, 'screenshots-gallery');
+                }
+            });
+
+            requestAnimationFrame(() => {
+                if (steps.length > 0) {
+                    DOMBuilder.renderInstallationSteps(steps, 'installation-steps');
+                }
+            });
+
+            // Adjuntar lightbox después de renderizar
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(() => this.attachLightboxListeners(), { timeout: 1000 });
+            } else {
+                setTimeout(() => this.attachLightboxListeners(), 500);
+            }
+
+            // Cargar versión de GitHub (no crítica)
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(() => this.loadVersionInfo(), { timeout: 3000 });
+            } else {
+                setTimeout(() => this.loadVersionInfo(), 2000);
+            }
             
-            // Cargar información de versión desde GitHub
-            this.loadVersionInfo();
-            
-            // Inicializar componentes después del renderizado
-            setTimeout(() => this.initComponents(), 100);
-            
+            // Cargar módulos no críticos cuando idle
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(async () => {
+                    const { initNonCritical } = await import('./non-critical.js');
+                    await initNonCritical();
+                }, { timeout: 3000 });
+            } else {
+                setTimeout(async () => {
+                    const { initNonCritical } = await import('./non-critical.js');
+                    await initNonCritical();
+                }, 2000);
+            }
+
         } catch (error) {
-            console.error('Error loading data:', error);
-            this.initComponents();
+            console.error('Error loading content:', error);
         }
     },
 
     /**
-     * Carga y muestra la información de versión desde GitHub
+     * PASO 3: Módulos secundarios (animaciones, preloader)
+     * Se cargan cuando el navegador está idle
+     */
+    async loadSecondaryModules() {
+        try {
+            const [
+                { AnimationObserver },
+                { ImagePreloader }
+            ] = await Promise.all([
+                import('./animations.js'),
+                import('./image-preloader.js')
+            ]);
+
+            AnimationObserver.init();
+            ImagePreloader.init();
+            
+            this.modulesLoaded.secondary = true;
+            console.log('✅ Secondary modules loaded');
+
+        } catch (error) {
+            console.error('Error loading secondary modules:', error);
+        }
+    },
+
+    /**
+     * Carga de versión desde GitHub (LAZY - no crítica)
      */
     async loadVersionInfo() {
         try {
-            console.log('🔍 Loading version info from GitHub...');
+            const { GitHubVersion } = await import('./github-version.js');
             await GitHubVersion.renderVersionInfo('version-info');
         } catch (error) {
             console.error('Error loading version info:', error);
@@ -72,123 +178,65 @@ const App = {
     },
 
     /**
-     * Renderiza el contenido dinámico en el DOM
+     * Adjunta listeners del lightbox (después de renderizar screenshots)
      */
-    renderContent(features, screenshots, steps) {
-        if (features.length > 0) {
-            DOMBuilder.renderFeatures(features, 'features-grid');
-        }
-
-        if (screenshots.length > 0) {
-            DOMBuilder.renderScreenshots(screenshots, 'screenshots-gallery');
-        }
-
-        if (steps.length > 0) {
-            DOMBuilder.renderInstallationSteps(steps, 'installation-steps');
-        }
-    },
-
-    /**
-     * Inicializa todos los componentes de la aplicación
-     */
-    initComponents() {
+    async attachLightboxListeners() {
         try {
-            // CRÍTICO: Inicializar DownloadManager PRIMERO
-            DownloadManager.init();
-            console.log('✅ DownloadManager initialized first');
-            
-            // Inicializar componentes básicos
-            SmoothScroll.init();
-            HeaderScroll.init();
-            ImagePreloader.init();
-            AnimationObserver.init();
+            const { LightboxManager } = await import('./lightbox.js');
             
             // Inicializar lightbox sin listeners automáticos
             LightboxManager.initWithoutImageListeners();
             
-            // Adjuntar listeners de lightbox a las imágenes
-            this.attachLightboxListeners();
-
-            // Marcar inicialización completa
-            performanceMark('app-initialized');
+            // Exponer globalmente
+            window.LightboxManager = LightboxManager;
             
-            console.log('✅ All components initialized');
+            // Adjuntar a imágenes
+            const images = document.querySelectorAll('.screenshot-img');
+            
+            if (images.length === 0) return;
+            
+            images.forEach((img) => {
+                const card = img.closest('.screenshot-card');
+                if (!card) return;
+                
+                card.style.cursor = 'pointer';
+                
+                const openLightbox = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    LightboxManager.open(img.src, img.alt);
+                };
+                
+                card.addEventListener('click', openLightbox, { passive: false });
+                card.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openLightbox(e);
+                    }
+                });
+                
+                card.setAttribute('tabindex', '0');
+                card.setAttribute('aria-label', `Click para ampliar: ${img.alt}`);
+            });
+            
+            console.log('✅ Lightbox listeners attached');
             
         } catch (error) {
-            console.error('Error initializing components:', error);
-        }
-    },
-
-    /**
-     * Adjunta event listeners del lightbox a los cards de screenshots
-     */
-    attachLightboxListeners() {
-        const images = document.querySelectorAll('.screenshot-img');
-        
-        if (images.length === 0) return;
-        
-        images.forEach((img) => {
-            const card = img.closest('.screenshot-card');
-            
-            if (!card) return;
-            
-            // Estilo de cursor
-            card.style.cursor = 'pointer';
-            
-            // Handler de click
-            const openLightbox = (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                if (window.LightboxManager?.open) {
-                    window.LightboxManager.open(img.src, img.alt);
-                }
-            };
-            
-            // Event listeners
-            card.onclick = openLightbox;
-            card.addEventListener('click', openLightbox);
-            
-            // Soporte de teclado
-            card.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    openLightbox(e);
-                }
-            });
-            
-            // Accesibilidad
-            card.setAttribute('tabindex', '0');
-            card.setAttribute('role', 'button');
-            card.setAttribute('aria-label', `Click para ampliar: ${img.alt}`);
-        });
-    },
-
-    /**
-     * Registra Service Worker para PWA (opcional)
-     */
-    registerServiceWorker() {
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(reg => console.log('Service Worker registered'))
-                    .catch(err => console.warn('Service Worker registration failed:', err));
-            });
+            console.error('Error attaching lightbox:', error);
         }
     }
 };
 
-// Iniciar aplicación
+// Inicializar aplicación INMEDIATAMENTE
 App.init();
 
-// Exportar módulos globalmente INMEDIATAMENTE (no esperar)
-window.LightboxManager = LightboxManager;
-window.DownloadManager = DownloadManager;
+// Exportar globalmente para debugging y compatibilidad
 window.App = App;
+window.DownloadManager = null; // Se inicializará después
 
-console.log('✅ Modules exported globally');
-
-// Exportar App para debugging (opcional en producción)
-if (typeof process === 'undefined' || process.env?.NODE_ENV !== 'production') {
-    window.App = App;
-}
+// Esperar a que DownloadManager esté disponible
+setTimeout(() => {
+    import('./download-manager.js').then(({ DownloadManager }) => {
+        window.DownloadManager = DownloadManager;
+    });
+}, 100);

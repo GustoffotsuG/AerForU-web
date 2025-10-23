@@ -4,6 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- Canonical URL - CRÍTICO para SEO -->
+    <link rel="canonical" href="https://aerforu.netlify.app/">
+    
+    <!-- ============================================
+         RESOURCE HINTS - Alto Impacto en Performance
+         ============================================ -->
+    
+    <!-- 1. Preconnect a dominios externos (Early Connection) -->
+    <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
+    <link rel="preconnect" href="https://api.github.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    
+    <!-- 2. Preload de recursos críticos (JSON) -->
+    <link rel="preload" href="./assets/data/features.json" as="fetch" crossorigin>
+    <link rel="preload" href="./assets/data/screenshots.json" as="fetch" crossorigin>
+    
+    <!-- 3. Preload de imagen crítica (logo visible inmediatamente) -->
+    <link rel="preload" href="./assets/images/logo.png" as="image">
+    
+    <!-- 4. Preload de CSS crítico -->
+    <link rel="preload" href="./assets/css/variables.css" as="style">
+    <link rel="preload" href="./assets/css/main.css" as="style">
+    
+    <!-- 5. Modulepreload para JavaScript crítico -->
+    <link rel="modulepreload" href="./assets/js/app.js">
+    <link rel="modulepreload" href="./assets/js/theme-manager.js">
+    <link rel="modulepreload" href="./assets/js/utils.js">
+    
     <!-- SEO Meta Tags -->
     <meta name="description" content="AeRForU es la mejor extensión para Acepta el Reto. Añade niveles de dificultad, categorías, estadísticas avanzadas y marcado visual de problemas resueltos.">
     <meta name="keywords" content="AeRForU, Acepta el Reto, extensión Chrome, programación competitiva, algoritmos">
@@ -27,35 +55,143 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="./assets/images/logo.png">
     
-    <!-- CSS Modularizado -->
-    <link rel="stylesheet" href="./assets/css/variables.css">
-    <link rel="stylesheet" href="./assets/css/main.css">
-    <link rel="stylesheet" href="./assets/css/components.css">
-    <link rel="stylesheet" href="./assets/css/screenshots.css">
-    <link rel="stylesheet" href="./assets/css/installation.css">
-    <link rel="stylesheet" href="./assets/css/version-info.css">
-    <link rel="stylesheet" href="./assets/css/footer.css">
-    <link rel="stylesheet" href="./assets/css/download-button.css">
-    <link rel="stylesheet" href="./assets/css/responsive.css">
+    <!-- CSS CRÍTICO INLINE para First Paint rápido -->
+    <style>
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --bg: #ffffff;
+            --bg-light: #f8fafc;
+            --bg-card: #ffffff;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.12);
+            --border-radius: 16px;
+            --border-radius-lg: 24px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --max-width: 1280px;
+            --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+        }
+        [data-theme="dark"] {
+            --text: #f1f5f9;
+            --text-light: #cbd5e1;
+            --bg: #0f172a;
+            --bg-light: #1e293b;
+            --bg-card: #1e293b;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        body {
+            font-family: var(--font-family);
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg-light);
+            overflow-x: hidden;
+        }
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1030;
+            box-shadow: var(--shadow);
+            border-bottom: 1px solid rgba(102, 126, 234, 0.08);
+        }
+        nav {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--text);
+        }
+        .logo-img { border-radius: 10px; }
+        .hero {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 160px 2rem 120px;
+            text-align: center;
+            margin-top: 70px;
+            position: relative;
+        }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+        .loading-placeholder {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: var(--border-radius-lg);
+            text-align: center;
+            color: var(--text-light);
+        }
+    </style>
+    
+    <!-- CSS NO CRÍTICO con carga asíncrona -->
+    <link rel="stylesheet" href="./assets/css/variables.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="./assets/css/main.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="./assets/css/components.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="./assets/css/screenshots.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="./assets/css/installation.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="./assets/css/version-info.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="./assets/css/footer.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="./assets/css/download-button.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="./assets/css/responsive.css" media="print" onload="this.media='all'">
+    
+    <noscript>
+        <link rel="stylesheet" href="./assets/css/variables.css">
+        <link rel="stylesheet" href="./assets/css/main.css">
+        <link rel="stylesheet" href="./assets/css/components.css">
+        <link rel="stylesheet" href="./assets/css/screenshots.css">
+        <link rel="stylesheet" href="./assets/css/installation.css">
+        <link rel="stylesheet" href="./assets/css/version-info.css">
+        <link rel="stylesheet" href="./assets/css/footer.css">
+        <link rel="stylesheet" href="./assets/css/download-button.css">
+        <link rel="stylesheet" href="./assets/css/responsive.css">
+    </noscript>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <!-- Google Analytics DIFERIDO - No bloquea render -->
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-GDQQ9ND6V4', {
-        'send_page_view': true,
-        'anonymize_ip': true
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            var script = document.createElement('script');
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-GDQQ9ND6V4';
+            script.async = true;
+            document.head.appendChild(script);
+            
+            script.onload = function() {
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-GDQQ9ND6V4', {
+                    'send_page_view': true,
+                    'anonymize_ip': true
+                });
+            };
+        }, 2000);
     });
     </script>
 </head>
 <body>
-    <!-- Header -->
     <header id="header">
         <nav>
-            <a href="#" class="logo" aria-label="AeRForU - Inicio">
-                <img src="./assets/images/logo.png" alt="Logo AeRForU" class="logo-img" width="40" height="40">
+            <a href="/" class="logo" aria-label="AeRForU - Ir a inicio">
+                <img src="./assets/images/logo.png" alt="Logo AeRForU" class="logo-img" width="40" height="40" fetchpriority="high" decoding="async">
                 <span>AeRForU</span>
             </a>
             <div class="nav-right">
@@ -65,88 +201,62 @@
                     <li><a href="#installation">Instalación</a></li>
                     <li><a href="https://github.com/Jaimepas77/AeRForU" target="_blank" rel="noopener">GitHub</a></li>
                 </ul>
-                <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
-                    <span class="theme-icon">🌙</span>
+                <button class="theme-toggle" id="themeToggle" aria-label="Cambiar entre tema claro y oscuro">
+                    <span class="theme-icon" aria-hidden="true">🌙</span>
                 </button>
             </div>
         </nav>
     </header>
 
     <main>
-        <!-- Hero Section -->
         <section class="hero">
             <h1>La Mejor Extensión para Acepta el Reto</h1>
             <p>Extensión gratuita que añade niveles de dificultad, categorías de problemas, estadísticas avanzadas y marcado visual de problemas resueltos a aceptaelreto.com</p>
             <div class="cta-buttons">
-                <a href="https://github.com/Jaimepas77/AeRForU/archive/refs/heads/main.zip" class="btn btn-primary" download>
-                    <span>⬇️</span>
+                <a href="https://github.com/Jaimepas77/AeRForU/archive/refs/heads/main.zip" class="btn btn-primary" download aria-label="Descargar extensión AeRForU gratis">
+                    <span aria-hidden="true">⬇️</span>
                     <span>Descargar Gratis</span>
                 </a>
-                <a href="https://github.com/Jaimepas77/AeRForU" target="_blank" rel="noopener" class="btn btn-secondary">
-                    <span>📦</span>
+                <a href="https://github.com/Jaimepas77/AeRForU" target="_blank" rel="noopener" class="btn btn-secondary" aria-label="Ver código fuente en GitHub">
+                    <span aria-hidden="true">📦</span>
                     <span>Ver en GitHub</span>
                 </a>
             </div>
-            <div id="version-info"></div>
+            <div id="version-info" aria-live="polite"></div>
         </section>
 
-        <!-- Features Section -->
         <section id="features" class="section">
             <h2 class="section-title">Funcionalidades de AeRForU</h2>
             <p class="section-subtitle">Todas las herramientas que necesitas para mejorar tu experiencia</p>
-            <!-- Contenedor dinámico - se llenará con JavaScript -->
             <div id="features-grid" class="features-grid">
-                <!-- Fallback content mientras carga -->
-                <article class="feature-card fade-in">
-                    <div class="feature-icon">⏳</div>
-                    <h3>Cargando funcionalidades...</h3>
-                    <p>Por favor espera mientras se cargan los datos.</p>
-                </article>
-            </div>
-        </section>
-
-        <!-- Screenshots Section -->
-        <section id="screenshots" class="screenshots">
-            <div class="screenshots-container">
-                <h2 class="section-title">Capturas de Pantalla</h2>
-                <p class="section-subtitle">Descubre cómo AeRForU mejora visualmente tu experiencia</p>
-                
-                <!-- Contenedor dinámico - se llenará con JavaScript -->
-                <div id="screenshots-gallery" class="screenshots-gallery">
-                    <!-- Fallback content mientras carga -->
-                    <article class="screenshot-card fade-in">
-                        <div class="screenshot-wrapper">
-                            <div style="width: 100%; height: 300px; background: var(--bg-card); display: flex; align-items: center; justify-content: center; border-radius: var(--border-radius-lg);">
-                                <p style="color: var(--text-light);">⏳ Cargando capturas...</p>
-                            </div>
-                        </div>
-                        <div class="screenshot-caption">
-                            <h3>Cargando</h3>
-                            <p>Por favor espera mientras se cargan las imágenes.</p>
-                        </div>
-                    </article>
+                <div class="loading-placeholder">
+                    <p>⏳ Cargando funcionalidades...</p>
                 </div>
             </div>
         </section>
 
-        <!-- Installation Section -->
-        <section id="installation" class="section">
-            <h2 class="section-title">Cómo Instalar AeRForU</h2>
-            <p class="section-subtitle">Guía paso a paso para instalar la extensión</p>
-            <!-- Contenedor dinámico - se llenará con JavaScript -->
-            <div id="installation-steps" class="installation-steps">
-                <!-- Fallback content mientras carga -->
-                <article class="step fade-in">
-                    <div class="step-header">
-                        <span class="step-number">⏳</span>
-                        <h3>Cargando instrucciones...</h3>
+        <section id="screenshots" class="screenshots">
+            <div class="screenshots-container">
+                <h2 class="section-title">Capturas de Pantalla</h2>
+                <p class="section-subtitle">Descubre cómo AeRForU mejora visualmente tu experiencia</p>
+                <div id="screenshots-gallery" class="screenshots-gallery">
+                    <div class="loading-placeholder">
+                        <p>⏳ Cargando capturas de pantalla...</p>
                     </div>
-                    <p>Por favor espera mientras se cargan los pasos de instalación.</p>
-                </article>
+                </div>
             </div>
         </section>
 
-        <!-- SEO Content Section -->
+        <section id="installation" class="section">
+            <h2 class="section-title">Cómo Instalar AeRForU</h2>
+            <p class="section-subtitle">Guía paso a paso para instalar la extensión</p>
+            <div id="installation-steps" class="installation-steps">
+                <div class="loading-placeholder">
+                    <p>⏳ Cargando instrucciones de instalación...</p>
+                </div>
+            </div>
+        </section>
+
         <section class="seo-content">
             <article>
                 <h2>¿Qué es AeRForU?</h2>
@@ -166,13 +276,11 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <!-- Logo y Descripción -->
             <div class="footer-section footer-about">
                 <div class="footer-logo">
-                    <img src="./assets/images/logo.png" alt="Logo AeRForU" width="40" height="40">
+                    <img src="./assets/images/logo.png" alt="Logo AeRForU" width="40" height="40" loading="lazy" decoding="async">
                     <span>AeRForU</span>
                 </div>
                 <p class="footer-description">
@@ -183,59 +291,49 @@
                 </div>
             </div>
 
-            <!-- Enlaces Rápidos -->
             <div class="footer-section">
                 <h4 class="footer-title">Enlaces Rápidos</h4>
                 <ul class="footer-links-list">
-                    <li><a href="#features">📊 Funcionalidades</a></li>
-                    <li><a href="#screenshots">📸 Capturas</a></li>
-                    <li><a href="#installation">🔧 Instalación</a></li>
-                    <li><a href="https://aceptaelreto.com" target="_blank" rel="noopener">🎯 Acepta el Reto</a></li>
+                    <li><a href="#features"><span aria-hidden="true">📊</span> Funcionalidades</a></li>
+                    <li><a href="#screenshots"><span aria-hidden="true">📸</span> Capturas</a></li>
+                    <li><a href="#installation"><span aria-hidden="true">🔧</span> Instalación</a></li>
+                    <li><a href="https://aceptaelreto.com" target="_blank" rel="noopener"><span aria-hidden="true">🎯</span> Acepta el Reto</a></li>
                 </ul>
             </div>
 
-            <!-- Recursos -->
             <div class="footer-section">
                 <h4 class="footer-title">Recursos</h4>
                 <ul class="footer-links-list">
-                    <li><a href="https://github.com/Jaimepas77/AeRForU" target="_blank" rel="noopener">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                    <li><a href="https://github.com/Jaimepas77/AeRForU" target="_blank" rel="noopener" aria-label="Ver repositorio en GitHub">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
                             <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
                         </svg>
                         GitHub
                     </a></li>
-                    <li><a href="https://github.com/Jaimepas77/AeRForU/issues" target="_blank" rel="noopener">🐛 Reportar Bug</a></li>
-                    <li><a href="https://github.com/Jaimepas77/AeRForU/blob/main/README.md" target="_blank" rel="noopener">📖 Documentación</a></li>
-                    <li><a href="https://github.com/Jaimepas77/AeRForU/releases" target="_blank" rel="noopener">📦 Releases</a></li>
+                    <li><a href="https://github.com/Jaimepas77/AeRForU/issues" target="_blank" rel="noopener"><span aria-hidden="true">🐛</span> Reportar Bug</a></li>
+                    <li><a href="https://github.com/Jaimepas77/AeRForU/blob/main/README.md" target="_blank" rel="noopener"><span aria-hidden="true">📖</span> Documentación</a></li>
                 </ul>
             </div>
 
-            <!-- Comunidad y Soporte -->
             <div class="footer-section">
                 <h4 class="footer-title">Comunidad</h4>
                 <ul class="footer-links-list">
-                    <li><a href="https://github.com/Jaimepas77/AeRForU/issues/new" target="_blank" rel="noopener">💡 Sugerir Feature</a></li>
-                    <li><a href="https://github.com/Jaimepas77" target="_blank" rel="noopener">👤 Autor</a></li>
+                    <li><a href="https://github.com/Jaimepas77/AeRForU/issues/new" target="_blank" rel="noopener"><span aria-hidden="true">💡</span> Sugerir Feature</a></li>
+                    <li><a href="https://github.com/Jaimepas77" target="_blank" rel="noopener"><span aria-hidden="true">👤</span> Autor</a></li>
                 </ul>
             </div>
         </div>
 
-        <!-- Footer Bottom -->
         <div class="footer-bottom">
             <div class="footer-bottom-content">
                 <div class="footer-social">
-                    <a href="https://github.com/Jaimepas77/AeRForU" target="_blank" rel="noopener" aria-label="GitHub" class="social-btn">
-                        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+                    <a href="https://github.com/Jaimepas77/AeRForU" target="_blank" rel="noopener" aria-label="Visitar repositorio en GitHub" class="social-btn">
+                        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
                             <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
                         </svg>
                     </a>
-                    <a href="https://github.com/Jaimepas77/AeRForU/stargazers" target="_blank" rel="noopener" aria-label="Star en GitHub" class="social-btn">
-                        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
-                            <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/>
-                        </svg>
-                    </a>
-                    <a href="https://github.com/Jaimepas77/AeRForU/archive/refs/heads/main.zip" class="social-btn" aria-label="Descargar" download>
-                        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+                    <a href="https://github.com/Jaimepas77/AeRForU/archive/refs/heads/main.zip" class="social-btn" aria-label="Descargar extensión" download>
+                        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
                             <path d="M8.75 1.75a.75.75 0 00-1.5 0v6.59L4.81 5.9a.75.75 0 00-1.06 1.06l4 4a.75.75 0 001.06 0l4-4a.75.75 0 10-1.06-1.06L8.75 8.34V1.75z"/>
                             <path d="M2.5 10.5a.5.5 0 01.5.5v2a.5.5 0 00.5.5h9a.5.5 0 00.5-.5v-2a.5.5 0 011 0v2a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 13v-2a.5.5 0 01.5-.5z"/>
                         </svg>
@@ -245,16 +343,15 @@
         </div>
     </footer>
 
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
-        <span class="lightbox-close" id="lightboxClose" role="button" tabindex="0"></span>
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visor de imágenes ampliadas">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar visor de imágenes"></button>
         <div class="lightbox-img-container">
-            <img id="lightboxImg" src="" alt="">
+            <img id="lightboxImg" src="" alt="" decoding="async">
             <div class="lightbox-caption" id="lightboxCaption"></div>
         </div>
     </div>
 
-    <!-- JavaScript Modularizado -->
-    <script type="module" src="./assets/js/app.js"></script>
+    <!-- JavaScript DIFERIDO - Carga al final sin bloquear -->
+    <script type="module" defer src="./assets/js/app.js"></script>
 </body>
 </html>

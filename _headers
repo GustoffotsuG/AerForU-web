@@ -5,7 +5,65 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=()
 
-/assets/*
+/assets/*# Headers optimizados para Netlify - Performance y Seguridad
+
+
+/*
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://raw.githubusercontent.com https://api.github.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://raw.githubusercontent.com https://api.github.com;
+
+/assets/css/*
+  Cache-Control: public, max-age=31536000, immutable
+  
+/assets/js/*
+  Cache-Control: public, max-age=31536000, immutable
+  
+/assets/images/*
+  Cache-Control: public, max-age=31536000, immutable
+  
+/assets/data/*
+  Cache-Control: public, max-age=86400
+
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+  Link: </assets/css/variables.css>; rel=preload; as=style
+  Link: </assets/css/main.css>; rel=preload; as=style
+  Link: </assets/js/app.js>; rel=modulepreload
+  Link: </assets/images/logo.png>; rel=preload; as=image
+
+
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+  
+
+/favicon.ico
+  Cache-Control: public, max-age=604800
+
+
+/manifest.json
+  Cache-Control: public, max-age=0, must-revalidate
+  
+/sw.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+
+/*.json
+  Cache-Control: public, max-age=86400
+
+
+/*.xml
+  Cache-Control: public, max-age=3600
+  
+/*.txt
+  Cache-Control: public, max-age=3600
   Cache-Control: public, max-age=31536000, immutable
 
 /*.html
