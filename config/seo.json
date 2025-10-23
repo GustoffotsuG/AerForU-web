@@ -1,9 +1,9 @@
 {
   "meta": {
-    "title": "AeRForU - Extensión para Acepta el Reto | Opensource",
-    "description": "AeRForU es la mejor extensión para Acepta el Reto. Añade niveles de dificultad, recomendacion de categorías, estadísticas avanzadas y marcado visual de problemas resueltos. Mejora tu experiencia en aceptaelreto.com.",
-    "keywords": "AeRForU, Acepta el Reto, extensión Chrome, programación competitiva, problemas algoritmos, dificultad problemas, categorías programación, estadísticas coding, extension aceptaelreto, acepta el reto herramientas, programming challenges, competitive programming español, problemas programación, juez online, online judge español, acepta el reto plugin, acepta el reto extension, plugin acepta el reto, extension acepta el reto",
-    "author": "Juan Pastrana García",
+    "title": "AeRForU - Extensión Open Source para Acepta el Reto",
+    "description": "Extensión gratuita para navegadores que añade niveles de dificultad, categorías de problemas y estadísticas a Acepta el Reto. Código abierto y fácil de instalar.",
+    "keywords": "AeRForU, Acepta el Reto extensión, aceptaelreto herramientas, programación competitiva España, extensión Chrome programming, problemas algoritmos categorías, competitive programming tools, juez online español, acepta el reto chrome extension, extension navegador programacion, herramientas aceptaelreto, plugin acepta reto, mejoras acepta el reto, acepta reto estadisticas, dificultad problemas programacion, categorias algoritmos, problemas similares programacion",
+    "author": "Jaime Pastrana García",
     "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
     "canonical": "https://aerforu.netlify.app/",
     "language": "es-ES"
@@ -11,9 +11,9 @@
   "openGraph": {
     "type": "website",
     "url": "https://aerforu.netlify.app/",
-    "siteName": "AeRForU - Extensión para Acepta el Reto | Opensource",
-    "title": "AeRForU - Extensión para Acepta el Reto | Opensource",
-    "description": "AeRForU es la mejor extensión para Acepta el Reto. Añade niveles de dificultad, recomendacion de categorías, estadísticas avanzadas y marcado visual de problemas resueltos. Mejora tu experiencia en aceptaelreto.com.",
+    "siteName": "AeRForU",
+    "title": "AeRForU - Extensión Open Source para Acepta el Reto",
+    "description": "Extensión gratuita que añade niveles de dificultad, categorías y estadísticas a Acepta el Reto. Compatible con Chrome, Firefox y Edge.",
     "image": "https://aerforu.netlify.app/assets/images/og-image.png",
     "imageWidth": "1200",
     "imageHeight": "630",
@@ -22,18 +22,19 @@
   "twitter": {
     "card": "summary_large_image",
     "url": "https://aerforu.netlify.app/",
-    "title": "AeRForU - Extensión para Acepta el Reto | Opensource",
-    "description": "AeRForU es la mejor extensión para Acepta el Reto. Añade niveles de dificultad, recomendacion de categorías, estadísticas avanzadas y marcado visual de problemas resueltos. Mejora tu experiencia en aceptaelreto.com.",
+    "title": "AeRForU - Extensión para Acepta el Reto",
+    "description": "Añade niveles de dificultad, categorías y estadísticas a Acepta el Reto. Gratis y open source.",
     "image": "https://aerforu.netlify.app/assets/images/twitter-card.png",
-    "creator": "@tuperfil"
+    "creator": "@Jaimepas77"
   },
   "structuredData": {
     "softwareApplication": {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "AeRForU",
+      "alternateName": "Acepta el Reto For You",
       "applicationCategory": "BrowserExtension",
-      "operatingSystem": "Chrome, Firefox",
+      "operatingSystem": "Chrome, Edge, Chromium-based browsers",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -42,36 +43,146 @@
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "5",
-        "ratingCount": "1"
+        "ratingCount": "1",
+        "bestRating": "5",
+        "worstRating": "1"
       },
       "author": {
         "@type": "Person",
-        "name": "Juan Pastrana García"
+        "name": "Jaime Pastrana García",
+        "url": "https://github.com/Jaimepas77"
       },
-      "description": "Extensión de navegador que añade niveles de dificultad, categorías, estadísticas y marcado de problemas resueltos a Acepta el Reto",
-      "featureList": "Niveles de dificultad, Marcado de problemas AC/WA, Categorías de problemas, Problemas similares, Estadísticas avanzadas, Descarga de código",
+      "publisher": {
+        "@type": "Person",
+        "name": "Jaime Pastrana García"
+      },
+      "description": "Extensión de navegador gratuita y de código abierto que mejora la experiencia en Acepta el Reto añadiendo niveles de dificultad de problemas, categorización por temas, marcado visual de problemas resueltos y estadísticas personalizadas.",
+      "featureList": [
+        "Visualización de niveles de dificultad en problemas",
+        "Marcado automático de problemas resueltos (AC) y fallidos (WA)",
+        "Categorización de problemas por temas y algoritmos",
+        "Recomendaciones de problemas similares",
+        "Estadísticas detalladas de envíos",
+        "Descarga de código fuente de soluciones"
+      ],
       "screenshot": "https://aerforu.netlify.app/assets/images/screenshots/screenshot-1.webp",
-      "softwareVersion": "1.0",
+      "softwareVersion": "1.0.12",
       "url": "https://aerforu.netlify.app/",
       "downloadUrl": "https://github.com/Jaimepas77/AeRForU/archive/refs/heads/main.zip",
-      "releaseNotes": "Versión inicial con todas las funcionalidades principales"
+      "codeRepository": "https://github.com/Jaimepas77/AeRForU",
+      "programmingLanguage": "JavaScript",
+      "releaseNotes": "Versión inicial estable con todas las funcionalidades principales implementadas",
+      "softwareHelp": "https://github.com/Jaimepas77/AeRForU/blob/main/README.md",
+      "installUrl": "https://aerforu.netlify.app/#installation",
+      "about": "AeRForU es una extensión gratuita creada por la comunidad para mejorar la experiencia de uso de Acepta el Reto, la plataforma española de problemas de programación competitiva."
+    },
+    "breadcrumb": {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://aerforu.netlify.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Funcionalidades",
+          "item": "https://aerforu.netlify.app/#features"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Capturas de pantalla",
+          "item": "https://aerforu.netlify.app/#screenshots"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Instalación",
+          "item": "https://aerforu.netlify.app/#installation"
+        }
+      ]
+    },
+    "webSite": {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "AeRForU",
+      "url": "https://aerforu.netlify.app/",
+      "description": "Sitio oficial de AeRForU, extensión gratuita para Acepta el Reto",
+      "inLanguage": "es-ES",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://github.com/Jaimepas77/AeRForU/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
     },
     "faq": [
       {
-        "question": "¿Qué es AeRForU?",
-        "answer": "AeRForU es una extensión gratuita de navegador que mejora la experiencia en Acepta el Reto añadiendo niveles de dificultad, categorías, estadísticas avanzadas y marcado visual de problemas resueltos."
+        "@type": "Question",
+        "name": "¿Qué es AeRForU?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "AeRForU es una extensión gratuita de navegador que mejora la experiencia de uso de Acepta el Reto. Añade información útil como niveles de dificultad de problemas, categorías temáticas, marcado visual de problemas que has resuelto correctamente y estadísticas detalladas de tus envíos."
+        }
       },
       {
-        "question": "¿Es gratis AeRForU?",
-        "answer": "Sí, AeRForU es completamente gratuito y de código abierto. Puedes descargarlo desde GitHub sin ningún coste."
+        "@type": "Question",
+        "name": "¿Cuánto cuesta AeRForU?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "AeRForU es completamente gratuito. Es un proyecto de código abierto que puedes descargar, usar y modificar sin ningún coste."
+        }
       },
       {
-        "question": "¿En qué navegadores funciona AeRForU?",
-        "answer": "AeRForU funciona en Chrome, Firefox, Edge y cualquier navegador basado en Chromium."
+        "@type": "Question",
+        "name": "¿En qué navegadores funciona AeRForU?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "AeRForU funciona en Google Chrome, Microsoft Edge, Brave, Opera y cualquier otro navegador basado en Chromium. También es compatible con Mozilla Firefox."
+        }
       },
       {
-        "question": "¿Qué funcionalidades tiene AeRForU?",
-        "answer": "AeRForU incluye niveles de dificultad de problemas, marcado visual de AC/WA, categorías de problemas, recomendaciones de problemas similares, estadísticas avanzadas, enlaces en rankings y descarga de código."
+        "@type": "Question",
+        "name": "¿Cómo instalo AeRForU?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Para instalar AeRForU: 1) Descarga el archivo ZIP desde GitHub, 2) Descomprime la carpeta, 3) Abre chrome://extensions en tu navegador, 4) Activa el modo desarrollador, 5) Haz clic en 'Cargar extensión sin empaquetar' y selecciona la carpeta descomprimida."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué funcionalidades incluye AeRForU?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "AeRForU incluye: visualización de niveles de dificultad en la lista de problemas, marcado automático con colores de problemas resueltos (verde para AC, rojo para WA), acceso a categorías y temas de cada problema, recomendaciones de problemas similares, estadísticas detalladas de tus envíos por lenguaje y estado, y posibilidad de descargar el código fuente de tus soluciones aceptadas."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Es seguro usar AeRForU?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, AeRForU es completamente seguro. Es un proyecto de código abierto, lo que significa que cualquiera puede revisar el código fuente en GitHub. La extensión solo lee información pública de Acepta el Reto y no recopila ni envía datos personales."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Necesito una cuenta en Acepta el Reto para usar AeRForU?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, necesitas tener una cuenta en Acepta el Reto para aprovechar todas las funcionalidades de AeRForU, especialmente el marcado de problemas resueltos y las estadísticas personalizadas. Sin embargo, puedes ver los niveles de dificultad y categorías sin estar registrado."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Puedo contribuir al desarrollo de AeRForU?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, AeRForU es un proyecto de código abierto y las contribuciones son bienvenidas. Puedes reportar errores, sugerir nuevas funcionalidades o contribuir con código directamente en el repositorio de GitHub."
+        }
       }
     ]
   }

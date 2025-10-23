@@ -70,10 +70,13 @@ export const DownloadManager = {
         // 📊 TRACKEAR CLICK EN BOTÓN DE DESCARGA
         Analytics.trackButtonClick('Download Button', 'Hero Section');
 
-        // Mostrar estado de descarga
+        // NO PREVENIR el comportamiento por defecto - dejar que la descarga ocurra
+        // El navegador manejará la descarga automáticamente
+
+        // Mostrar estado de descarga INMEDIATAMENTE
         this.showDownloadingState(btn);
         
-        // Mostrar toast de inicio
+        // Mostrar toast de inicio INMEDIATAMENTE
         this.showToast({
             type: 'info',
             title: '📥 Iniciando descarga',
@@ -82,7 +85,7 @@ export const DownloadManager = {
             showProgress: true
         });
 
-        // Simular tiempo de descarga (para dar feedback visual)
+        // Usar un timeout MUY corto solo para feedback visual
         setTimeout(() => {
             this.showSuccessState(btn);
             
@@ -92,8 +95,8 @@ export const DownloadManager = {
             // Toast de éxito
             this.showToast({
                 type: 'success',
-                title: '✅ ¡Descarga completada!',
-                message: 'AeRForU se ha descargado correctamente. Consulta la carpeta de descargas.',
+                title: '✅ ¡Descarga iniciada!',
+                message: 'AeRForU se está descargando. Consulta la carpeta de descargas.',
                 duration: 4000
             });
 
@@ -101,7 +104,7 @@ export const DownloadManager = {
             setTimeout(() => {
                 this.resetButton(btn);
             }, 3000);
-        }, 1500);
+        }, 800);
     },
 
     /**
