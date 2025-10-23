@@ -93,12 +93,15 @@ const App = {
      */
     initComponents() {
         try {
+            // CRÍTICO: Inicializar DownloadManager PRIMERO
+            DownloadManager.init();
+            console.log('✅ DownloadManager initialized first');
+            
             // Inicializar componentes básicos
             SmoothScroll.init();
             HeaderScroll.init();
             ImagePreloader.init();
             AnimationObserver.init();
-            DownloadManager.init();
             
             // Inicializar lightbox sin listeners automáticos
             LightboxManager.initWithoutImageListeners();
@@ -108,6 +111,8 @@ const App = {
 
             // Marcar inicialización completa
             performanceMark('app-initialized');
+            
+            console.log('✅ All components initialized');
             
         } catch (error) {
             console.error('Error initializing components:', error);
@@ -176,11 +181,12 @@ const App = {
 // Iniciar aplicación
 App.init();
 
-// Exportar módulos globalmente
-setTimeout(() => {
-    window.LightboxManager = LightboxManager;
-    window.DownloadManager = DownloadManager;
-}, 200);
+// Exportar módulos globalmente INMEDIATAMENTE (no esperar)
+window.LightboxManager = LightboxManager;
+window.DownloadManager = DownloadManager;
+window.App = App;
+
+console.log('✅ Modules exported globally');
 
 // Exportar App para debugging (opcional en producción)
 if (typeof process === 'undefined' || process.env?.NODE_ENV !== 'production') {

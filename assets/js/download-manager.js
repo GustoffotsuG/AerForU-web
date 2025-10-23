@@ -23,7 +23,12 @@ export const DownloadManager = {
      * Crea el contenedor de toasts
      */
     createToastContainer() {
-        if (document.getElementById('toast-container')) return;
+        // Si ya existe, no crear otro
+        if (document.getElementById('toast-container')) {
+            this.toastContainer = document.getElementById('toast-container');
+            console.log('✅ Toast container already exists');
+            return;
+        }
 
         this.toastContainer = document.createElement('div');
         this.toastContainer.id = 'toast-container';
@@ -31,6 +36,8 @@ export const DownloadManager = {
         this.toastContainer.setAttribute('aria-live', 'polite');
         this.toastContainer.setAttribute('aria-atomic', 'true');
         document.body.appendChild(this.toastContainer);
+        
+        console.log('✅ Toast container created');
     },
 
     /**
@@ -40,6 +47,11 @@ export const DownloadManager = {
         // Buscar todos los botones de descarga
         const downloadButtons = document.querySelectorAll('a[download], .btn-primary[download]');
         
+        if (downloadButtons.length === 0) {
+            console.warn('⚠️ No download buttons found');
+            return;
+        }
+        
         downloadButtons.forEach(btn => {
             // Guardar contenido original
             if (btn.classList.contains('btn-primary')) {
@@ -47,10 +59,15 @@ export const DownloadManager = {
                 this.originalContent = btn.innerHTML;
             }
 
+            // IMPORTANTE: Usar capture phase para interceptar ANTES del comportamiento nativo
             btn.addEventListener('click', (e) => {
                 this.handleDownload(e, btn);
-            });
+            }, true); // true = capture phase
+            
+            console.log('✅ Download listener attached to:', btn.textContent.trim());
         });
+        
+        console.log(`✅ ${downloadButtons.length} download button(s) initialized`);
     },
 
     /**
@@ -150,6 +167,17 @@ export const DownloadManager = {
      * @param {Object} options - Opciones del toast
      */
     showToast(options = {}) {
+        // CRITICAL: Asegurar que el container existe
+        if (!this.toastContainer) {
+            console.warn('⚠️ Toast container not ready, creating now...');
+            this.createToastContainer();
+        }
+        
+        if (!this.toastContainer) {
+            console.error('❌ Failed to create toast container');
+            return null;
+        }
+        
         const {
             type = 'info',
             title = '',
@@ -191,6 +219,8 @@ export const DownloadManager = {
         // Añadir al contenedor
         this.toastContainer.appendChild(toast);
         this.activeToasts.add(toastId);
+        
+        console.log('📢 Toast created:', { type, title, message });
 
         // Animar entrada
         requestAnimationFrame(() => {
