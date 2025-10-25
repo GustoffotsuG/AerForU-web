@@ -4,7 +4,7 @@
 
 Sitio web de **AeRForU**, extensión para [Acepta el Reto](https://aceptaelreto.com).
 
-🔗 **[aerforu.netlify.app](https://aerforu.netlify.app/)**
+🔗 **[aerforu.netlify.app](https://aerforu.netlify.app/)** | 📦 **[Repositorio AeRForU](https://github.com/Jaimepas77/AeRForU)**
 
 ---
 
@@ -105,7 +105,7 @@ Variables CSS en `/assets/css/variables.css`:
 
 ---
 
-## Autor de la extensio AeRForU
+## Autor de la extensión AeRForU
 
 **Jaime Pastrana García**
 
