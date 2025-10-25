@@ -9,7 +9,7 @@
     {
       "number": 2,
       "title": "Abrir Extensiones en Chrome",
-      "description": "En tu navegador Chrome o Edge, introduce chrome://extensions en la barra de direcciones. Activa el \"Modo de desarrollador\" en la esquina superior derecha.",
+      "description": "En tu navegador Chrome o Edge (o basado en Chromium), introduce chrome://extensions en la barra de direcciones. Activa el \"Modo de desarrollador\" en la esquina superior derecha.",
       "code": "chrome://extensions"
     },
     {

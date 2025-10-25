@@ -11,7 +11,7 @@
       "id": "visual-marking",
       "icon": "✅",
       "title": "Marcado Visual de Problemas Resueltos",
-      "description": "Identifica rápidamente qué problemas has resuelto correctamente (AC - Accepted) y cuáles has intentado sin éxito (WA - Wrong Answer) con colores distintivos.",
+      "description": "Identifica rápidamente qué problemas has resuelto correctamente (AC - Accepted) y cuáles has intentado sin éxito (WA / CE / RTE / TLE / MLE etc) con colores distintivos y modificables.",
       "order": 2
     },
     {
@@ -25,7 +25,7 @@
       "id": "similar-problems",
       "icon": "🔗",
       "title": "Recomendaciones de Problemas Similares",
-      "description": "Descubre problemas relacionados con recomendaciones inteligentes basadas en categorías compartidas y dificultad similar.",
+      "description": "Descubre problemas relacionados con recomendaciones inteligentes basadas en categorías compartidas y dificultad similar (los ya realizados apareceran en verde).",
       "order": 4
     },
     {
