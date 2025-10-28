@@ -1,7 +1,4 @@
-
-/assets/*
-/assets/*# Headers optimizados para Netlify - Performance y Seguridad
-
+# Headers optimizados para Netlify - Performance y SEO (Bing + Google)
 
 /*
   X-Frame-Options: DENY
@@ -9,8 +6,16 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=()
+  
+  # CRÍTICO para Bing: Permitir indexación
+  X-Robots-Tag: index, follow
+  
+  # Content Security Policy (permite Google Analytics y GitHub)
   Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://raw.githubusercontent.com https://api.github.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://raw.githubusercontent.com https://api.github.com;
 
+# ============================================
+# CACHE PARA ASSETS ESTÁTICOS
+# ============================================
 /assets/css/*
   Cache-Control: public, max-age=31536000, immutable
   
@@ -19,29 +24,57 @@
   
 /assets/images/*
   Cache-Control: public, max-age=31536000, immutable
+  X-Robots-Tag: index, follow
+  
+/assets/images/screenshots/*
+  Cache-Control: public, max-age=31536000, immutable
+  X-Robots-Tag: index, follow
   
 /assets/data/*
   Cache-Control: public, max-age=86400
 
+# ============================================
+# HTML - SIN CACHE (siempre actualizado)
+# ============================================
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
-
+  X-Robots-Tag: index, follow
 
 /index.html
   Cache-Control: public, max-age=0, must-revalidate
+  X-Robots-Tag: index, follow, max-snippet:-1, max-image-preview:large
   Link: </assets/css/variables.css>; rel=preload; as=style
   Link: </assets/css/main.css>; rel=preload; as=style
   Link: </assets/js/app.js>; rel=modulepreload
   Link: </assets/images/logo.png>; rel=preload; as=image
 
+# ============================================
+# SITEMAPS Y ROBOTS
+# ============================================
+/sitemap.xml
+  Cache-Control: public, max-age=3600
+  Content-Type: application/xml
+  X-Robots-Tag: noindex
 
+/robots.txt
+  Cache-Control: public, max-age=3600
+  Content-Type: text/plain
+  X-Robots-Tag: noindex
+
+# Verificación de Bing (si usas archivo XML)
+/BingSiteAuth.xml
+  Cache-Control: public, max-age=86400
+  Content-Type: application/xml
+  X-Robots-Tag: noindex
+
+# ============================================
+# OTROS ARCHIVOS
+# ============================================
 /assets/fonts/*
   Cache-Control: public, max-age=31536000, immutable
-  
 
 /favicon.ico
   Cache-Control: public, max-age=604800
-
 
 /manifest.json
   Cache-Control: public, max-age=0, must-revalidate
@@ -49,16 +82,11 @@
 /sw.js
   Cache-Control: public, max-age=0, must-revalidate
 
-
 /*.json
   Cache-Control: public, max-age=86400
-
 
 /*.xml
   Cache-Control: public, max-age=3600
   
 /*.txt
   Cache-Control: public, max-age=3600
-  Cache-Control: public, max-age=31536000, immutable
-
-/*.html

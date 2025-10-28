@@ -5,20 +5,30 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   
-  <!-- Página principal - Máxima prioridad -->
+  <!-- ============================================
+       PÁGINA PRINCIPAL - Máxima Prioridad
+       ============================================ -->
   <url>
     <loc>https://aerforu.netlify.app/</loc>
     <lastmod>2024-12-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    
+    <!-- Imágenes principales -->
     <image:image>
       <image:loc>https://aerforu.netlify.app/assets/images/logo.png</image:loc>
-      <image:title>AeRForU - Extensión para Acepta el Reto</image:title>
-      <image:caption>Logo de AeRForU, extensión gratuita para aceptaelreto.com</image:caption>
+      <image:title>AeRForU Logo - Extensión para Acepta el Reto</image:title>
+      <image:caption>Logo oficial de AeRForU, extensión gratuita para aceptaelreto.com</image:caption>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://aerforu.netlify.app/assets/images/og-image.png</image:loc>
+      <image:title>AeRForU - Vista previa social</image:title>
+      <image:caption>Imagen de vista previa para redes sociales de AeRForU</image:caption>
     </image:image>
   </url>
   
-  <!-- Index.html explícito -->
+  <!-- Index.html explícito (Bing lo prefiere) -->
   <url>
     <loc>https://aerforu.netlify.app/index.html</loc>
     <lastmod>2024-12-20</lastmod>
@@ -26,7 +36,11 @@
     <priority>1.0</priority>
   </url>
   
-  <!-- Sección de Funcionalidades -->
+  <!-- ============================================
+       SECCIONES PRINCIPALES
+       ============================================ -->
+  
+  <!-- Funcionalidades -->
   <url>
     <loc>https://aerforu.netlify.app/#features</loc>
     <lastmod>2024-12-20</lastmod>
@@ -34,35 +48,57 @@
     <priority>0.9</priority>
   </url>
   
-  <!-- Sección de Capturas de Pantalla -->
+  <!-- Capturas de Pantalla con TODAS las imágenes -->
   <url>
     <loc>https://aerforu.netlify.app/#screenshots</loc>
     <lastmod>2024-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    
+    <!-- Screenshot 1 -->
     <image:image>
       <image:loc>https://aerforu.netlify.app/assets/images/screenshots/screenshot-1.webp</image:loc>
-      <image:title>Vista de Acepta el Reto con AeRForU</image:title>
-      <image:caption>Captura de pantalla de AeRForU funcionando en aceptaelreto.com</image:caption>
+      <image:title>Vista de enunciado de problema en Acepta el Reto con AeRForU</image:title>
+      <image:caption>AeRForU mostrando categorías y dificultad en aceptaelreto.com</image:caption>
     </image:image>
+    
+    <!-- Screenshot 2 -->
     <image:image>
       <image:loc>https://aerforu.netlify.app/assets/images/screenshots/screenshot-2.webp</image:loc>
-      <image:title>Categorías en Acepta el Reto</image:title>
-      <image:caption>Panel de categorías de AeRForU en Acepta el Reto</image:caption>
+      <image:title>Panel lateral de categorías en Acepta el Reto</image:title>
+      <image:caption>Sistema de categorías y problemas similares de AeRForU</image:caption>
     </image:image>
+    
+    <!-- Screenshot 4 -->
     <image:image>
       <image:loc>https://aerforu.netlify.app/assets/images/screenshots/screenshot-4.webp</image:loc>
-      <image:title>Estadísticas de Acepta el Reto</image:title>
-      <image:caption>Estadísticas detalladas de AeRForU para Acepta el Reto</image:caption>
+      <image:title>Estadísticas detalladas en Acepta el Reto</image:title>
+      <image:caption>Gráficos de estadísticas por lenguaje con AeRForU</image:caption>
     </image:image>
+    
+    <!-- Screenshot 5 -->
     <image:image>
       <image:loc>https://aerforu.netlify.app/assets/images/screenshots/screenshot-5.webp</image:loc>
       <image:title>Marcado visual AC/WA en Acepta el Reto</image:title>
-      <image:caption>Sistema de colores AC/WA de AeRForU en aceptaelreto.com</image:caption>
+      <image:caption>Lista de problemas con colores AC (verde) y WA (rojo)</image:caption>
+    </image:image>
+    
+    <!-- Screenshot 7 -->
+    <image:image>
+      <image:loc>https://aerforu.netlify.app/assets/images/screenshots/screenshot-7.webp</image:loc>
+      <image:title>Panel de configuración de AeRForU</image:title>
+      <image:caption>Opciones de personalización de AeRForU para Acepta el Reto</image:caption>
+    </image:image>
+    
+    <!-- Screenshot 8 -->
+    <image:image>
+      <image:loc>https://aerforu.netlify.app/assets/images/screenshots/screenshot-8.webp</image:loc>
+      <image:title>Instalación de AeRForU en Chrome</image:title>
+      <image:caption>Extensión AeRForU instalada en el navegador</image:caption>
     </image:image>
   </url>
   
-  <!-- Sección de Instalación -->
+  <!-- Instalación -->
   <url>
     <loc>https://aerforu.netlify.app/#installation</loc>
     <lastmod>2024-12-20</lastmod>
@@ -70,12 +106,24 @@
     <priority>0.9</priority>
   </url>
   
-  <!-- README en GitHub (referencia externa) -->
+  <!-- ============================================
+       ENLACES EXTERNOS IMPORTANTES
+       ============================================ -->
+  
+  <!-- GitHub Repository -->
   <url>
     <loc>https://github.com/Jaimepas77/AeRForU</loc>
     <lastmod>2024-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  
+  <!-- Acepta el Reto (referencia) -->
+  <url>
+    <loc>https://aceptaelreto.com</loc>
+    <lastmod>2024-12-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   
 </urlset>
